@@ -3,11 +3,9 @@ from sklearn.dummy import *
 from sklearn.ensemble import *
 from sklearn.neighbors import *
 from sklearn.tree import *
-from sklearn.calibration import *
 from sklearn.linear_model import *
 from sklearn.multiclass import *
 from sklearn.svm import *
-
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import HashingVectorizer
@@ -40,31 +38,31 @@ def perform(classifiers, vectorizers, train_data, test_data):
 if __name__ == '__main__':
     data = pandas.read_csv('workorder.csv', encoding='utf-8')
     data['v2'].apply(notmalizetext)
-    learn = data[:14388]
-    test = data[14388:]
+    learn = data[:12388]
+    test = data[12388:]
     perform(
         [
-            BernoulliNB(),
-            RandomForestClassifier(n_estimators=100, n_jobs=-1),
-            AdaBoostClassifier(),
-            BaggingClassifier(),
-            ExtraTreesClassifier(),
-            GradientBoostingClassifier(),
-            DecisionTreeClassifier(),
-            CalibratedClassifierCV(),
-            DummyClassifier(),
-            PassiveAggressiveClassifier(),
-            RidgeClassifier(),
-            RidgeClassifierCV(),
-            SGDClassifier(),
-            OneVsRestClassifier(SVC(kernel='linear')),
+            # BernoulliNB(),
+            # GaussianNB(),
+            # RandomForestClassifier(n_estimators=100, n_jobs=-1),
+            # AdaBoostClassifier(),
+            # BaggingClassifier(),
+            # ExtraTreesClassifier(),
+            # GradientBoostingClassifier(),
+            # DecisionTreeClassifier(),
+            # DummyClassifier(),
+            # PassiveAggressiveClassifier(),
+            # RidgeClassifier(),
+            # RidgeClassifierCV(),
+            # SGDClassifier(),
+            # OneVsRestClassifier(SVC(kernel='linear')),
             OneVsRestClassifier(LogisticRegression()),
-            KNeighborsClassifier()
+            # KNeighborsClassifier()
         ],
         [
-            CountVectorizer(),
+            # CountVectorizer(),
             TfidfVectorizer(),
-            HashingVectorizer()
+            # HashingVectorizer()
         ],
         learn,
         test
