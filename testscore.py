@@ -12,26 +12,30 @@ from sklearn.multiclass import *
 from sklearn.svm import *
 import pandas
 import csv
+import pickle
 from hazm import *
 
 
-def notmalizetext(text):
+def notmalizetext(textstring):
     normalize = Normalizer()
-    return normalize.normalize(text)
+    return normalize.normalize(textstring)
 
 
 if __name__ == '__main__':
     data = pandas.read_csv('workorder.csv', encoding='utf-8')
     data['v2'].apply(notmalizetext)
-    train_data = data[:12388]
-    test_data = data[12388:]
+    train_data = data[:11071]
+    test_data = data[11071:]
 
-    classifier = OneVsRestClassifier(LogisticRegression())
+    with open('SVC.pkl', 'rb') as f:
+        classifier = pickle.load(f)
+
+    # classifier = SVC()
     vectorizer = TfidfVectorizer()
 
     # train
     vectorize_text = vectorizer.fit_transform(train_data.v2)
-    classifier.fit(vectorize_text, train_data.v1)
+    # classifier.fit(vectorize_text, train_data.v1)
 
     csv_arr = []
     for index, row in test_data.iterrows():
@@ -45,7 +49,7 @@ if __name__ == '__main__':
             result = 'wrong'
         csv_arr.append([len(csv_arr), text, answer, predict, result])
 
-        with open('test_score.csv', 'w', newline='') as csvfile:
+        with open('test_score.csv', 'w', newline='', encoding='utf-8') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             spamwriter.writerow(['#', 'text', 'answer', 'predict', result])
 

@@ -4,7 +4,9 @@
       <w>csvfile</w>
       <w>lemmatizer</w>
       <w>notmalizetext</w>
+      <w>proba</w>
       <w>spamwriter</w>
+      <w>textstring</w>
       <w>tfidf</w>
       <w>vectorize</w>
       <w>vectorizer</w>
