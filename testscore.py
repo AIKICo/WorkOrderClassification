@@ -43,15 +43,16 @@ if __name__ == '__main__':
         text = row[1]
         vectorize_text = vectorizer.transform([text])
         predict = classifier.predict(vectorize_text)[0]
+        predict_proba = classifier.predict_proba(vectorize_text).tolist()
         if predict == answer:
             result = 'right'
         else:
             result = 'wrong'
-        csv_arr.append([len(csv_arr), text, answer, predict, result])
+        csv_arr.append([len(csv_arr), text, answer, predict, result, predict_proba[0]])
 
-        with open('test_score.csv', 'w', newline='', encoding='utf-8') as csvfile:
+        with open('test_score1.csv', 'w', newline='', encoding='utf-8') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            spamwriter.writerow(['#', 'text', 'answer', 'predict', result])
+            spamwriter.writerow(['#', 'text', 'answer', 'predict', result, 'score'])
 
             for ro in csv_arr:
                 spamwriter.writerow(ro)

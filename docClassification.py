@@ -49,27 +49,27 @@ if __name__ == '__main__':
     test = data[11071:]
     perform(
         [
-            # BernoulliNB(),
+            BernoulliNB(),
             # GaussianNB(),
-            # RandomForestClassifier(n_estimators=400, n_jobs=5),
-            # AdaBoostClassifier(),
+            RandomForestClassifier(n_estimators=100, n_jobs=1),
+            AdaBoostClassifier(),
             # BaggingClassifier(),
             # ExtraTreesClassifier(),
             # GradientBoostingClassifier(),
-            # DecisionTreeClassifier(),
+            DecisionTreeClassifier(),
             # DummyClassifier(),
             # PassiveAggressiveClassifier(),
             # RidgeClassifier(),
             # RidgeClassifierCV(),
             # SGDClassifier(),
-            # OneVsRestClassifier(SVC(kernel='linear')),
-            # OneVsRestClassifier(LogisticRegression()),
-            # KNeighborsClassifier(),
+            OneVsRestClassifier(SVC(kernel='linear')),
+            OneVsRestClassifier(LogisticRegression()),
+            KNeighborsClassifier(),
             SVC(probability=True),
             # MLPClassifier()
         ],
         [
-            # CountVectorizer(),
+            CountVectorizer(),
             TfidfVectorizer(),
             # HashingVectorizer()
         ],
