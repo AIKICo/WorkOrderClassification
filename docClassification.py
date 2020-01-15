@@ -44,32 +44,32 @@ def perform(classifiers, vectorizers, train_data, test_data):
 
 if __name__ == '__main__':
     data = pandas.read_csv('workorder.csv', encoding='utf-8')
-    data['v2'].apply(notmalizetext)
+    data['v2'] = data['v2'].apply(notmalizetext)
     learn = data[:11071]
     test = data[11071:]
     perform(
         [
-            BernoulliNB(),
+            # BernoulliNB(),
             # GaussianNB(),
-            RandomForestClassifier(n_estimators=100, n_jobs=1),
-            AdaBoostClassifier(),
+            # RandomForestClassifier(n_estimators=100, n_jobs=1),
+            # AdaBoostClassifier(),
             # BaggingClassifier(),
             # ExtraTreesClassifier(),
             # GradientBoostingClassifier(),
-            DecisionTreeClassifier(),
+            # DecisionTreeClassifier(),
             # DummyClassifier(),
             # PassiveAggressiveClassifier(),
             # RidgeClassifier(),
             # RidgeClassifierCV(),
             # SGDClassifier(),
-            OneVsRestClassifier(SVC(kernel='linear')),
-            OneVsRestClassifier(LogisticRegression()),
-            KNeighborsClassifier(),
+            # OneVsRestClassifier(SVC(kernel='linear')),
+            # OneVsRestClassifier(LogisticRegression()),
+            # KNeighborsClassifier(),
             SVC(probability=True),
             # MLPClassifier()
         ],
         [
-            CountVectorizer(),
+            # CountVectorizer(),
             TfidfVectorizer(),
             # HashingVectorizer()
         ],

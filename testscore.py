@@ -14,7 +14,6 @@ import pandas
 import csv
 import pickle
 from hazm import *
-from hazm import stopwords_list
 
 
 def notmalizetext(textstring):
@@ -24,7 +23,7 @@ def notmalizetext(textstring):
 
 if __name__ == '__main__':
     data = pandas.read_csv('workorder.csv', encoding='utf-8')
-    data['v2'].apply(notmalizetext)
+    data['v2'] = data['v2'].apply(notmalizetext)
     train_data = data[:11071]
     test_data = data[11071:]
 
