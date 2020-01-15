@@ -14,6 +14,7 @@ import pandas
 import csv
 import pickle
 from hazm import *
+from hazm import stopwords_list
 
 
 def notmalizetext(textstring):
