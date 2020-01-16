@@ -1,3 +1,7 @@
+import warnings
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 from sklearn.naive_bayes import *
 from sklearn.dummy import *
 from sklearn.ensemble import *
@@ -13,6 +17,7 @@ from sklearn.feature_extraction.text import HashingVectorizer
 import pickle
 import pandas
 from hazm import *
+from autosklearn.classification import AutoSklearnClassifier
 
 
 def notmalizetext(text):
@@ -45,6 +50,7 @@ def perform(classifiers, vectorizers, train_data, test_data):
 if __name__ == '__main__':
     data = pandas.read_csv('workorder.csv', encoding='utf-8')
     data['v2'] = data['v2'].apply(notmalizetext)
+    data['v1'] = data['v1'].apply({'CONS': 1, 'NOTCONS': 2}.get)
     learn = data[:11071]
     test = data[11071:]
     perform(
@@ -66,7 +72,8 @@ if __name__ == '__main__':
             # OneVsRestClassifier(LogisticRegression()),
             # KNeighborsClassifier(),
             SVC(probability=True),
-            # MLPClassifier()
+            # MLPClassifier(),
+            AutoSklearnClassifier()
         ],
         [
             # CountVectorizer(),
