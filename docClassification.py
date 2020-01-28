@@ -45,6 +45,8 @@ def perform(classifiers, vectorizers, train_data, test_data):
 if __name__ == '__main__':
     data = pandas.read_csv('workorder.csv', encoding='utf-8')
     data['v2'] = data['v2'].apply(notmalizetext)
+    # word_freq = pandas.Series(' '.join(data['v2']).split())
+    # data['v2'] = data['v2'].apply(lambda x:" ".join(x for x in x.split() if x not in ['اختصاص', 'پروفایل', 'نصب', 'OverHual', 'نیاز']))
     learn = data[:11071]
     test = data[11071:]
     perform(
