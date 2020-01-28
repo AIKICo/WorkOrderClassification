@@ -1,17 +1,7 @@
 <component name="ProjectDictionaryState">
-  <dictionary name="Mohammad">
+  <dictionary name="mohammad">
     <words>
-      <w>csvfile</w>
-      <w>lemmatizer</w>
-      <w>notmalizetext</w>
-      <w>proba</w>
-      <w>spamwriter</w>
-      <w>textstring</w>
-      <w>tfidf</w>
-      <w>vectorize</w>
-      <w>vectorizer</w>
-      <w>vectorizers</w>
-      <w>workorder</w>
+      <w>notcons</w>
     </words>
   </dictionary>
 </component>
